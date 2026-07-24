@@ -1,0 +1,11 @@
+# Write your MySQL query statement below
+select id,
+CASE
+when p_id is null then 'Root'
+when id in (
+    select distinct p_id from Tree where p_id is not null 
+)
+
+then 'Inner'
+ELSE 'Leaf'
+end as type from Tree;
